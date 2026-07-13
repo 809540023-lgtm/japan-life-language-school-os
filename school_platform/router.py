@@ -2304,6 +2304,96 @@ def _page_shell(title: str, body: str) -> str:
             background: rgba(255,255,255,.76);
             border-color: rgba(38,127,123,.3);
           }}
+          .gateway-hero {{
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr);
+            gap: clamp(30px, 5vw, 74px);
+            align-items: center;
+          }}
+          .gateway-hero-copy {{ display: grid; gap: 18px; }}
+          .gateway-hero-copy h1 {{ max-width: 760px; margin: 0; }}
+          .gateway-kicker {{
+            display: inline-flex;
+            width: fit-content;
+            padding: 9px 14px;
+            border-radius: 999px;
+            color: #174e59;
+            background: rgba(255,255,255,.62);
+            border: 1px solid rgba(23,78,89,.1);
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: .12em;
+          }}
+          .gateway-primary-grid {{
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+          }}
+          .gateway-primary-card {{
+            display: grid;
+            gap: 8px;
+            min-height: 172px;
+            padding: 22px;
+            border-radius: 28px;
+            color: #174e59;
+            background: rgba(255,255,255,.62);
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 0 16px 34px rgba(42,105,111,.09);
+            transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+          }}
+          .gateway-primary-card:hover {{
+            transform: translateY(-5px);
+            background: rgba(255,255,255,.9);
+            box-shadow: 0 24px 48px rgba(42,105,111,.15);
+          }}
+          .gateway-card-no {{ color: #267f7b; font-size: 13px; font-weight: 900; letter-spacing: .14em; }}
+          .gateway-primary-card strong {{ color: #174e59; font-size: 23px; }}
+          .gateway-primary-card p {{ color: #52717a; font-size: 16px; line-height: 1.65; }}
+          .gateway-arrow {{ margin-top: auto; color: #267f7b; font-size: 15px; font-weight: 900; }}
+          .gateway-map {{
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+          }}
+          .gateway-step {{
+            position: relative;
+            display: grid;
+            gap: 10px;
+            min-height: 190px;
+            padding: 22px 18px;
+            border-radius: 26px;
+            background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(230,248,246,.92));
+            border: 1px solid rgba(31,101,110,.1);
+          }}
+          .gateway-step span {{ color: #3eaaa4; font-size: 14px; font-weight: 900; }}
+          .gateway-step strong {{ color: #174e59; font-size: 20px; }}
+          .gateway-step p {{ margin: 0; font-size: 15px; line-height: 1.65; }}
+          .gateway-tool-grid {{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+          }}
+          .gateway-tool-group {{
+            padding: 22px;
+            border-radius: 28px;
+            background: rgba(255,255,255,.72);
+            border: 1px solid rgba(31,101,110,.1);
+          }}
+          .gateway-tool-group h3 {{ margin-top: 0; color: #174e59; }}
+          .gateway-link-list {{ display: grid; gap: 10px; }}
+          .gateway-link {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            color: #174e59;
+            background: rgba(129,216,208,.12);
+            font-size: 16px;
+            font-weight: 800;
+          }}
+          .gateway-link:hover {{ background: rgba(129,216,208,.25); }}
           .btn {{
             color: #fff;
             background: linear-gradient(135deg, #42aaa5, #267f7b);
@@ -2639,6 +2729,8 @@ def _page_shell(title: str, body: str) -> str:
             }}
             .home-shell .home-hero {{ min-height: auto; border-radius: 32px; }}
             .home-shell .home-hero .hero-grid {{ grid-template-columns: 1fr; }}
+            .gateway-hero, .gateway-map, .gateway-tool-grid {{ grid-template-columns: 1fr; }}
+            .gateway-step {{ min-height: auto; }}
           }}
           @media (max-width: 640px) {{
             .brand-caption {{
@@ -2662,6 +2754,8 @@ def _page_shell(title: str, body: str) -> str:
             .home-shell .home-hero h1 {{ font-size: 46px; }}
             .home-shell .command-board {{ grid-template-columns: 1fr; }}
             .home-shell .home-role-section {{ padding: 24px 18px; }}
+            .gateway-primary-grid {{ grid-template-columns: 1fr; }}
+            .gateway-primary-card {{ min-height: 150px; }}
           }}
         </style>
       </head>
@@ -3471,7 +3565,96 @@ def school_platform_home() -> str:
       </section>
     </div>
     """
-    return _page_shell("AI 日語補習班營運平台 MVP", body)
+    body = f"""
+    <div class="home-shell">
+      <section class="hero home-hero">
+        <div class="gateway-hero">
+          <div class="gateway-hero-copy">
+            <span class="gateway-kicker">JAPAN LIFE LANGUAGE SCHOOL OS</span>
+            <h1>一個入口，<br>連接整間日語學校。</h1>
+            <p class="home-lead">從找到學員、完成報名，到 Zoom 上課、AI 雙向翻譯、作業追蹤與營運報表，所有角色都從這裡進入自己的工作區。</p>
+            <div class="actions">
+              <a class="btn" href="{student_portal_url}">開始學習</a>
+              <a class="btn alt" href="/school-platform/courses">瀏覽課程</a>
+            </div>
+          </div>
+          <div class="gateway-primary-grid" aria-label="主要角色入口">
+            <a class="gateway-primary-card" href="{student_portal_url}">
+              <span class="gateway-card-no">01 · STUDENT</span><strong>學員學習中心</strong>
+              <p>課表、Zoom 上課、教材、作業、測驗與 AI 練習。</p><span class="gateway-arrow">進入學習 →</span>
+            </a>
+            <a class="gateway-primary-card" href="{teacher_portal_url}">
+              <span class="gateway-card-no">02 · TEACHER</span><strong>教師教學中心</strong>
+              <p>班級、備課、雙向翻譯、批改與課後紀錄。</p><span class="gateway-arrow">開始教學 →</span>
+            </a>
+            <a class="gateway-primary-card" href="/school-platform/franchise-vap">
+              <span class="gateway-card-no">03 · PARTNER</span><strong>加盟合作中心</strong>
+              <p>大阪區域加盟、AI 招商模式、培訓與業績報表。</p><span class="gateway-arrow">了解加盟 →</span>
+            </a>
+            <a class="gateway-primary-card" href="/school-platform/admin">
+              <span class="gateway-card-no">04 · OPERATIONS</span><strong>學校營運後台</strong>
+              <p>招生 CRM、教務、財務、客服、招聘與決策報表。</p><span class="gateway-arrow">管理學校 →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div><div class="eyebrow">How It Works</div><h2>整個平台只走一條清楚的營運路徑</h2></div>
+          <p class="section-subtitle">不需要理解所有模組，按照角色與階段前進即可。</p>
+        </div>
+        <div class="gateway-map">
+          <article class="gateway-step"><span>STEP 01</span><strong>AI 招生</strong><p>找到真正有赴日、生活與職場日語需求的人。</p></article>
+          <article class="gateway-step"><span>STEP 02</span><strong>諮詢報名</strong><p>CRM 跟進、試聽、選課、付款與通知集中完成。</p></article>
+          <article class="gateway-step"><span>STEP 03</span><strong>真人授課</strong><p>老師透過 Zoom 上課，平台保留完整教學紀錄。</p></article>
+          <article class="gateway-step"><span>STEP 04</span><strong>AI 陪練</strong><p>雙向翻譯、情境口說、作業與弱點分析持續學習。</p></article>
+          <article class="gateway-step"><span>STEP 05</span><strong>數據成長</strong><p>主管查看招生、學習、營收與加盟成果並做決策。</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div><div class="eyebrow">Daily Shortcuts</div><h2>今天要處理什麼？</h2></div>
+          <p class="section-subtitle">常用功能依工作情境分組，完整系統仍保留，但不再全部擠在第一屏。</p>
+        </div>
+        <div class="gateway-tool-grid">
+          <article class="gateway-tool-group"><h3>招生與學習</h3><div class="gateway-link-list">
+            <a class="gateway-link" href="/school-platform/courses">課程總覽 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/trial-booking">預約試聽 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/enrollment">正式報名 <span>→</span></a>
+            <a class="gateway-link" href="{student_ai_url}">AI 練習區 <span>→</span></a>
+          </div></article>
+          <article class="gateway-tool-group"><h3>教學與營運</h3><div class="gateway-link-list">
+            <a class="gateway-link" href="/school-platform/admin/ai-teaching">AI 教學規劃 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/admin/teaching">教務管理 <span>→</span></a>
+            <a class="gateway-link" href="{consultant_portal_url}">招生顧問工作台 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/admin/executive">主管決策中心 <span>→</span></a>
+          </div></article>
+          <article class="gateway-tool-group"><h3>管理與系統</h3><div class="gateway-link-list">
+            <a class="gateway-link" href="/school-platform/admin/finance">財務中心 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/admin/messages">訊息中心 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/system">系統狀態 <span>→</span></a>
+            <a class="gateway-link" href="/school-platform/site-entries">全部網址 <span>→</span></a>
+          </div></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div><div class="eyebrow">Live Operations</div><h2>平台今日狀態</h2></div>
+          <p class="section-subtitle">只保留管理者需要快速掌握的核心數字。</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><div class="label">今日新名單</div><div class="value">{metrics.today_new_leads}</div></div>
+          <div class="stat"><div class="label">本週試聽</div><div class="value">{metrics.this_week_trial_bookings}</div></div>
+          <div class="stat"><div class="label">本週報名</div><div class="value">{metrics.this_week_enrollments}</div></div>
+          <div class="stat"><div class="label">已收營收</div><div class="value">{_format_jpy(metrics.paid_revenue_total)}</div></div>
+        </div>
+      </section>
+    </div>
+    """
+    return _page_shell("Japan Life Language School OS", body)
 
 
 @router.get("/franchise-vap", response_class=HTMLResponse)
