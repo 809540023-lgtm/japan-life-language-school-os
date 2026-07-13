@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+data/*
+!data/
+!data/school_platform_store.json
